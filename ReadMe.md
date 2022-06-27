@@ -40,10 +40,10 @@ python eval_gevit.py --resume pretrained_models/imagenet10_gen/ema_checkpoint.pt
 
 # model config
 
-| dataset   | params(Million) | dim  | heads | depth |
-|-----------|-----------------|------|-------|-------|
-| cifar10   | 11M             | 384  |       |       |
-| celeba    | 17M             | 384  |       |       |
-| stl10     | 13M             | 384  |       |       |
-| img128-10 | 26M             | 512  |       |       |
-| img224-10 | 84M             | 1024 |       |       |
+| dataset   | params(Million) | patch size | dim        | heads | depth |
+|-----------|-----------------|------------|------------|-------|-------|
+| cifar10   | 11M             | 4 x 4      | 384        |       |       |
+| celeba    | 17M             | 8 x 8      | 384        |       |       |
+| stl10     | 13M             | 8 x 8      | 384        |       |       |
+| img128-10 | 26M             | 8 x 8      | 512        |       |       |
+| img224-10 | 84M             | 14 x 14    | 1024       |       |       |
