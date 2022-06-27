@@ -27,7 +27,7 @@ python eval_gevit.py --resume pretrained_models/celeba_gen/ema_checkpoint.pth --
 ```
 
 
-if don't want to download STL for classification
+if don't want to download *CIFAR10*/*STL10* for classification, use `--data_path no`
 ```
 python eval_gevit.py --resume pretrained_models/stl10_hybrid/ema_checkpoint.pth --dataset stl10 --gpu-id 4 --data_path none
 ```
