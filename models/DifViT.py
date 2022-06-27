@@ -2,7 +2,7 @@ import math
 from .vit import *
 
 
-def MLP(dim_in, dim_hidden):
+def TimeEmbMLP(dim_in, dim_hidden):
     return nn.Sequential(
         Rearrange('... -> ... 1'),
         nn.Linear(1, dim_hidden),
@@ -54,7 +54,7 @@ class ViT(nn.Module):
                 nn.Linear(time_dim, time_dim)
             )
         else:
-            self.time_mlp = MLP(1, time_dim)
+            self.time_mlp = TimeEmbMLP(1, time_dim)
 
         if not is_SPT:
             self.to_patch_embedding = nn.Sequential(
