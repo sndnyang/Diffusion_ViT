@@ -42,16 +42,42 @@ def ema(source, target, decay):
             source_dict[key].data * (1 - decay))
 
 
-def save_sample_q(model, epoch, arg, num=100, save=True, i=0):
+def save_sample_q(model, epoch, arg, num=100, save=True, i=0, video=False):
     milestone = str(epoch)
     if i > 0:
         milestone += '-' + str(i)
     batches = num_to_groups(num, num)
-    all_images_list = list(map(lambda n: model.sample(batch_size=n), batches))
+    all_images_list = list(map(lambda n: model.sample(batch_size=n, save_video=video), batches))
     all_images = torch.cat(all_images_list, dim=0)
     if save:
-        tv_utils.save_image(all_images, os.path.join(arg.save_path, 'samples', f'sample-{milestone}.png'), nrow=10)
+        tv_utils.save_image(all_images, os.path.join(arg.save_path, 'samples', f'sample-{milestone}.png'), nrow=int(sqrt(num)))
     return all_images
+
+
+def to_video(ema_model, arg):
+    import matplotlib.pyplot as plt
+    import matplotlib.cm as cm
+    import matplotlib.animation as animation
+    import matplotlib.image as mpimg
+
+    ema_model.eval()
+    num = 100
+    if arg.dataset != 'cifar10':
+        num = 25
+    save_sample_q(ema_model, 0, arg, num=num, video=True)
+
+    frames = []
+    fig = plt.figure()
+    for i in range(200):
+        img = mpimg.imread('iter-%d.png' % (i + 1))
+        img = plt.imshow(img, animated=True)
+        frames.append([img])
+
+    ani = animation.ArtistAnimation(fig, frames, interval=200, blit=True, repeat_delay=0)
+    ani.save('%s-generate.mp4' % arg.dataset)
+    print("save a video to show the sampling")
+    for i in range(200):
+        os.remove('iter-%d.png' % (i + 1))
 
 
 def sample_ema(ema_model, buffer, epoch, arg):

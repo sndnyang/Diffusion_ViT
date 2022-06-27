@@ -25,7 +25,7 @@ from utils.training_functions import accuracy
 import argparse
 from utils.scheduler import build_scheduler
 from utils.dataloader import datainfo, dataload
-from utils.utils import ema, num_to_groups, sample_ema
+from utils.utils import ema, num_to_groups, sample_ema, to_video
 from utils.losses import ce_loss
 from models.create_model import create_model
 import warnings
@@ -210,6 +210,8 @@ def main(arg):
 
     print(f"load model: {arg.model}")
     print(f'Number of params: {format(n_parameters, ",")}')
+
+    to_video(diffusion_model, arg)
     # summary(model, ((3, data_info['img_size'], data_info['img_size']), (1,)))
 
 
