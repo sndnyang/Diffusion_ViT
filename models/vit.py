@@ -115,7 +115,7 @@ class Transformer(nn.Module):
         self.layers = nn.ModuleList([])
         self.time_layers = nn.ModuleList([])
         self.scale = {}
-        self.ffn_time = False
+        self.ffn_time = ffn_time
 
         for i in range(depth):
             self.time_layers.append(nn.Sequential(
