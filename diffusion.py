@@ -180,14 +180,11 @@ class GaussianDiffusion(nn.Module):
         print(f'sampling loop time step {self.num_timesteps}')
         for i in tqdm(reversed(range(0, self.num_timesteps)), desc='sampling loop time step', total=self.num_timesteps):
             img = self.p_sample(img, torch.full((b,), i, device=device, dtype=torch.long))
-            if save_video:
-                print(i)
             if save_video and ((i + 1) % 5 == 0 or i == 0):
                 if i == 0:
                     idx = 0
                 else:
                     idx = int(i // 5)
-                print('saved as', idx)
                 tv_utils.save_image(unnormalize_to_zero_to_one(img), f'iter-{200-idx}.png', nrow=int(np.sqrt(b)))
         img = unnormalize_to_zero_to_one(img)
         return img
