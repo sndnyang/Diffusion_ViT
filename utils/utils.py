@@ -64,8 +64,8 @@ def sample_ema(ema_model, buffer, epoch, arg):
         if (i + 1) % 10 == 0:
             print(f'Sampling {i}-th batch with 100 images')
         q = save_sample_q(ema_model, i, arg, num=num)
-        idx_start = i * 100
-        buffer[idx_start:idx_start + 100] = q
+        idx_start = i * num
+        buffer[idx_start:idx_start + num] = q
 
     inc_score, fid = 0, 0
     if arg.dataset == 'cifar10':

@@ -67,7 +67,8 @@ def init_parser():
     arg_parser.add_argument('--channel', type=int, help='disable cuda')
     arg_parser.add_argument('--heads', type=int, help='disable cuda')
     arg_parser.add_argument('--depth', type=int, help='disable cuda')
-    arg_parser.add_argument('--dim', default=384, choices=[192, 384, 512, 786], type=int, help='Image Net dataset path')
+    arg_parser.add_argument('--dim', default=384, choices=[192, 384, 512, 786, 1024], type=int, help='Image Net dataset path')
+    arg_parser.add_argument('--ps', default=8, type=int, help='patch size')
 
     arg_parser.add_argument('--ls', action='store_false', help='label smoothing')
     arg_parser.add_argument('--smoothing', type=float, default=0.1, help='Label smoothing (default: 0.1)')
@@ -183,7 +184,7 @@ def main(arg):
     epoch_start = time.time()
     if arg.dataset in ['celeba']:
         print('%s is not a classification dataset' % arg.dataset)
-    elif arg.data_path == "none":
+    elif arg.data_path in ["none", 'no']:
         print("Don't load the data and evaluate the accuracy ")
     else:
         train_dataset, val_dataset, px_dataset = dataload(arg, augmentations, normalize, data_info, px=True)
@@ -204,7 +205,7 @@ def main(arg):
         print(f'Inception Score {inc}   fid {fid}')
 
     end = time.time()
-    total_time = args.epochs * (end - epoch_start)
+    total_time = end - epoch_start
     print(f'PID {arg.pid} Total ~ {str(timedelta(seconds=total_time))}')
 
     print(f"load model: {arg.model}")
