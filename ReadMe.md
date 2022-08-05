@@ -1,49 +1,86 @@
 
-# Evaluate Generative ViT
+# Generative ViT and hybrid ViT
 
-pretrained models can be downloaded from:
+pip install -r requirements.txt
 
-https://nitro2.cs.gsu.edu/dddown/
+## Training script
 
-The list of pretrained models (gen: trained as generator only, hybrid: generator and classifier) :
+Please refer to scripts/cifar10_train.sh
 
-- https://nitro2.cs.gsu.edu/dddown/celeba_gen/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/cifar10_gen/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/cifar10_hybrid/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/imagenet10_gen/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/img12810_gen/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/stl10_hybrid/ema_checkpoint.pth
-- https://nitro2.cs.gsu.edu/dddown/stl10_gen/ema_checkpoint.pth
-
-
-Scripts/Configurations to reproduce (models may have some small changes)
-
-```
-python eval_gevit.py --resume pretrained_models/cifar10_hybrid/ema_checkpoint.pth 
-```
-
-```
-python eval_gevit.py --resume pretrained_models/celeba_gen/ema_checkpoint.pth --dataset celeba
+```bash
+python gevit_main.py --wd 0.05 \
+      --heads 12 --depth 9 \
+      --epochs 500 \
+      --no_fid  \
+      --dataset cifar10/cifar100/tinyimg/stl10/celeba/img32 \
+      --data_path ./data  \
+      --ps 4/8 \
+      --gpu 0 \
+      --px 100 --pyx 1
 ```
 
 
-if don't want to download *CIFAR10*/*STL10* for classification, use `--data_path no`
+## Evaluation
+
+### Accuracy
+
+```shell
+python eval_model.py --eval test_clf --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth 
 ```
-python eval_gevit.py --resume pretrained_models/stl10_hybrid/ema_checkpoint.pth --dataset stl10 --gpu-id 4 --data_path none
+
+### Generate from scratch
+
+```shell
+python eval_model.py --eval gen --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth
 ```
 
 
-I add time embeddings to features before FFN layer(doesn't help, but need --ffnt)
+### Negative Log Likelihood 
+
+nll or bits per dim (bpd)
+
+```shell
+python eval_model.py --eval nll --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth
 ```
-python eval_gevit.py --resume pretrained_models/imagenet10_gen/ema_checkpoint.pth --dataset img10 --gpu-id 4 --data_path no --dim 1024  --ps 14 --ffnt
+
+### Calibration
+
+ECE
+
+```shell
+python eval_model.py --eval cali --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth
+```
+
+### out-of-distribution detection
+
+```shell
+python eval_model.py --eval OOD --ood_dataset svhn --score_fn px --ffnt 1 --ps 4 --gpu-id 0 --resume $1 
+```
+
+### AUROC for OOD
+
+```shell
+python eval_model.py --eval logp_hist --datasets cifar10 svhn --ffnt 1 --ps 4 --resume $1 --gpu-id 0
+```
+
+
+### Attack
+
+Please refer to scripts/bpda_attack.sh
+
+```shell
+CUDA_VISIBLE_DEVICES=0 python bpda_eot_attack.py  ckpt_path  l_inf/l_2  eps
 ```
 
 # model config
 
 | dataset   | params(Million) | patch size | dim        | heads | depth |
 |-----------|-----------------|------------|------------|-------|-------|
-| cifar10   | 11M             | 4 x 4      | 384        |       |       |
-| celeba    | 17M             | 8 x 8      | 384        |       |       |
-| stl10     | 13M             | 8 x 8      | 384        |       |       |
-| img128-10 | 26M             | 8 x 8      | 512        |       |       |
-| img224-10 | 84M             | 14 x 14    | 1024       |       |       |
+| cifar10   | 11M             | 4 x 4      | 384        | 12    |   9   |
+| cifar100  | 11M             | 4 x 4      | 384        | 12    |   9   |
+| img32     | 11M             | 4 x 4      | 384        | 12    |   9   |
+| tinyimg   | 11M             | 8 x 8      | 384        | 12    |   9   |
+| stl10     | 13M             | 8 x 8      | 384        | 12    |   9   |
+| celeba    | 17M             | 8 x 8      | 384        | 12    |   9   |
+| img128-10 | 26M             | 8 x 8      | 512        | 12    |   9   |
+| img224-10 | 84M             | 14 x 14    | 1024       | 12    |   9   |
