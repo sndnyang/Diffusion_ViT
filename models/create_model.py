@@ -1,10 +1,10 @@
+from ExpUtils import wlog
 from .vit import ViT
 from .cait import CaiT
 from .pit import PiT
 from .swin import SwinTransformer
 from .t2t import T2T_ViT
 from .DifViT import ViT as DifViT
-from .CVT import ViT as CVT
 
 
 class EMA:

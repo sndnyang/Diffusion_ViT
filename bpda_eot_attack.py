@@ -20,8 +20,6 @@ from models.DifViT import ViT
 from diffusion import GaussianDiffusion
 from Task.attack_utils import setup_exp, import_data
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '6'
-
 # json file with experiment config
 CONFIG_FILE = './bpda_eot_attack.json'
 model_path = sys.argv[1]

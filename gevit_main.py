@@ -242,8 +242,8 @@ def main(arg):
                    os.path.join(arg.save_path, 'checkpoint.pth'))
 
         if arg.pyx > 0:
-            test_acc, test_loss = validate(val_loader, model, criterion, lr, arg, epoch=epoch)
-            acc2, test_loss2 = validate(val_loader, ema_model.denoise_fn, criterion, lr, arg, epoch=epoch, ema='EMA')
+            test_acc, test_loss = validate(val_loader, model, criterion, arg, epoch=epoch)
+            acc2, test_loss2 = validate(val_loader, ema_model.denoise_fn, criterion, arg, epoch=epoch)
             if test_acc > best_acc1:
                 print('* Best model update *')
                 best_acc1 = test_acc

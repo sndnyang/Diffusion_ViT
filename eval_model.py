@@ -19,7 +19,7 @@ MODELS = ['difvit', 'vit', 'swin', 'pit', 'cait', 't2t']
 
 def init_parser():
     arg_parser = argparse.ArgumentParser(description='evaluate script')
-    arg_parser.add_argument("--eval", default="OOD", type=str, choices=["logp_hist", "OOD", "test_clf", "fid", "cali", "gen", 'quality', 'nll'])
+    arg_parser.add_argument("--eval", default="OOD", type=str, choices=["logp_hist", "OOD", "test_clf", "cali", "gen", 'quality', 'nll'])
 
     # Data args
     arg_parser.add_argument('--data_path', default='../../data', type=str, help='dataset path')
@@ -98,21 +98,6 @@ def main(arg):
     # torch.cuda.set_device(arg.gpu)
     data_info = datainfo(logger, arg)
 
-    if arg.eval == "fid":
-        eval_start = time.time()
-        print('eval is, fid')
-        checkpoint = torch.load(arg.resume)
-        buffer = checkpoint['buffer']
-        metrics = eval_is_fid((buffer + 1) * 127.5, dataset=arg.dataset)
-        inc_score = metrics['inception_score_mean']
-        fid = metrics['frechet_inception_distance']
-        print(f"sample with {len(buffer)}")
-        print("Inception score of {}".format(inc_score))
-        print("FID of score {}".format(fid))
-        eval_time = time.time() - eval_start
-        print(f'takes {eval_time}')
-        return
-
     criterion = nn.CrossEntropyLoss().to(args.device)
 
     normalize = [transforms.Normalize(mean=data_info['stat'][0], std=data_info['stat'][1])]
@@ -159,7 +144,7 @@ def main(arg):
     if arg.eval == "test_clf":
         _, val_dataset, _ = dataload(arg, augmentations, normalize, data_info, px=True)
         val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=100, shuffle=False, pin_memory=True, num_workers=arg.workers)
-        acc, test_loss = validate(val_loader, f, criterion, 0, arg, epoch=-1)
+        acc, test_loss = validate(val_loader, f, criterion, arg, epoch=-1)
         print(f'Acc {acc}, loss {test_loss}')
 
     if arg.eval == "cali":
