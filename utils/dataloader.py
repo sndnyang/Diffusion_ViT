@@ -30,7 +30,7 @@ def datainfo(logger, args):
         n_classes = 10
         img_size = 32
         
-    elif args.dataset == 'tinyimagenet':
+    elif args.dataset == 'tinyimg':
         wlog('T-IMNET')
         n_classes = 200
         img_size = 64
@@ -40,10 +40,23 @@ def datainfo(logger, args):
         n_classes = 1000
         img_size = 224
 
+    elif args.dataset == 'mnist':
+        wlog('MNIST, 32')
+        img_size = 32
+        n_classes = 10
+
     elif args.dataset == 'stl10':
         wlog('STL10')
         n_classes = 10
         img_size = 96
+
+    elif 'img32' in args.dataset:
+        wlog('imagenet 32')
+        n_classes = 1000
+        img_size = 32
+        if '10' in args.dataset:
+            wlog('32 but 10')
+            args.n_classes = 10
 
     elif 'img128' in args.dataset:
         wlog('imagenet 128')
@@ -71,7 +84,6 @@ def datainfo(logger, args):
 def dataload(args, augmentations, normalize, data_info, px=False):
     base_transform = transforms.Compose([
         transforms.Resize(data_info['img_size']),
-        transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         lambda x: x * 2 - 1
         # *normalize
@@ -82,6 +94,13 @@ def dataload(args, augmentations, normalize, data_info, px=False):
         px_dataset = datasets.CIFAR10(root=args.data_path, train=True, download=False, transform=base_transform)
         val_dataset = datasets.CIFAR10(root=args.data_path, train=False, download=False, transform=base_transform)
 
+    elif args.dataset == 'mnist':
+        args.img_size = 32
+        augmentations = base_transform
+        train_dataset = datasets.MNIST(root=args.data_path, train=True, download=True, transform=augmentations)
+        px_dataset = datasets.MNIST(root=args.data_path, train=True, download=False, transform=base_transform)
+        val_dataset = datasets.MNIST(root=args.data_path, train=False, download=False, transform=base_transform)
+
     elif args.dataset == 'cifar100':
         args.img_size = 32
         train_dataset = datasets.CIFAR100(root=args.data_path, train=True, download=True, transform=augmentations)
@@ -89,7 +108,7 @@ def dataload(args, augmentations, normalize, data_info, px=False):
         val_dataset = datasets.CIFAR100(root=args.data_path, train=False, download=False, transform=base_transform)
         
     elif args.dataset == 'svhn':
-        args.img_size = 28
+        args.img_size = 32
         train_dataset = datasets.SVHN(root=args.data_path, split='train', download=True, transform=augmentations)
         px_dataset = datasets.SVHN(root=args.data_path, split='train', download=True, transform=base_transform)
         val_dataset = datasets.SVHN(root=args.data_path, split='test', download=True, transform=base_transform)
@@ -102,11 +121,11 @@ def dataload(args, augmentations, normalize, data_info, px=False):
         px_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=base_transform)
         val_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=base_transform)
 
-    elif args.dataset == 'tinyimagenet':
+    elif args.dataset == 'tinyimg':
         args.img_size = 64
-        train_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'tinimagenet', 'train'), transform=augmentations)
-        px_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'tinyimagenet', 'train'), transform=base_transform)
-        val_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'tinyimagenet', 'val'), transform=base_transform)
+        train_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=augmentations)
+        px_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=base_transform)
+        val_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'val', 'images'), transform=base_transform)
 
     elif args.dataset == 'imgnet':
         args.img_size = 224
@@ -125,7 +144,17 @@ def dataload(args, augmentations, normalize, data_info, px=False):
 
     elif 'img128' in args.dataset:
         args.img_size = 128
-        args.print_freq = 10000
+        args.print_freq = 3000
+        if '10' in args.dataset:
+            args.print_freq = 800
+
+        train_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=augmentations)
+        px_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'train'), transform=base_transform)
+        val_dataset = datasets.ImageFolder(root=os.path.join(args.data_path, 'val'), transform=base_transform)
+
+    elif 'img32' in args.dataset:
+        args.img_size = 32
+        args.print_freq = 3000
         if '10' in args.dataset:
             args.print_freq = 800
 

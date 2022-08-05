@@ -3,7 +3,7 @@ from .training_functions import accuracy
 from ExpUtils import wlog
 
 
-def validate(val_loader, model, criterion, arg):
+def validate(val_loader, model, criterion, arg, epoch=None):
     model.eval()
     loss_val, acc1_val = 0, 0
     n = 0
@@ -23,6 +23,6 @@ def validate(val_loader, model, criterion, arg):
             acc1_val += float(acc1[0] * images.size(0))
 
     avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-    wlog(f'[Test]   Loss: {avg_loss:.4f}   Top-1: {avg_acc1:6.2f}')
+    wlog(f'[Epoch {epoch + 1}][Test]   Loss: {avg_loss:.4f}   Top-1: {avg_acc1:6.2f}')
 
     return avg_acc1, avg_loss

@@ -127,7 +127,7 @@ def set_file_logger(exp_logger, args):
     formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d]: %(message)s")
     fh.setFormatter(formatter)
     exp_logger.addHandler(fh)
-    # copy_script_to_folder(sys.argv[0], args.dir_path)
+    copy_script_to_folder(sys.argv[0], args.dir_path)
     if os.name != 'nt':
         signal.signal(signal.SIGQUIT, partial(rename_quit_handler, args))
         signal.signal(signal.SIGTERM, partial(delete_quit_handler, args))
