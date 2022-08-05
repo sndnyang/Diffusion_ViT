@@ -79,7 +79,7 @@ class GaussianDiffusion(nn.Module):
             beta_schedule='cosine'
     ):
         super().__init__()
-        assert not (isinstance(self, GaussianDiffusion) and denoise_fn.channels != denoise_fn.out_dim)
+        # assert not (isinstance(self, GaussianDiffusion) and denoise_fn.channels != denoise_fn.out_dim)
 
         self.channels = channels
         self.image_size = image_size
@@ -178,7 +178,7 @@ class GaussianDiffusion(nn.Module):
         b = shape[0]
         img = torch.randn(shape, device=device)
         print(f'sampling loop time step {self.num_timesteps}')
-        for i in tqdm(reversed(range(0, self.num_timesteps)), desc='sampling loop time step', total=self.num_timesteps):
+        for i in reversed(range(0, self.num_timesteps)):
             img = self.p_sample(img, torch.full((b,), i, device=device, dtype=torch.long))
             if save_video and ((i + 1) % 5 == 0 or i == 0):
                 if i == 0:
@@ -243,12 +243,12 @@ class GaussianDiffusion(nn.Module):
             raise ValueError(f'unknown objective {self.objective}')
 
         loss = self.loss_fn(model_out, target)
-        if model_out.shape[2] > 32:
-            pooling = nn.MaxPool2d(2, stride=2)
-            x_s = pooling(model_out)
-            t_s = pooling(target)
-            loss += self.loss_fn(x_s, t_s) * 0.2
-        
+        # if model_out.shape[2] > 32:
+        #     pooling = nn.MaxPool2d(2, stride=2)
+        #     x_s = pooling(model_out)
+        #     t_s = pooling(target)
+        #     loss += self.loss_fn(x_s, t_s) * 0.2
+
         # if model_out.shape[2] % 3 == 0:
         #     pooling = nn.MaxPool2d(3, stride=3)
         #     x_s = pooling(model_out)

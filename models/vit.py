@@ -4,6 +4,7 @@ from utils.drop_path import DropPath
 from einops import rearrange, repeat
 from einops.layers.torch import Rearrange
 from .SPT import ShiftedPatchTokenization
+from ExpUtils import wlog
 # helpers
 
 
@@ -110,17 +111,20 @@ class Attention(nn.Module):
 
 class Transformer(nn.Module):
     def __init__(self, dim, num_patches, depth, heads, dim_head,
-                 mlp_dim_ratio, dropout=0., stochastic_depth=0., is_LSA=False, ffn_time=False):
+                 mlp_dim_ratio, dropout=0., stochastic_depth=0., tokens=1,
+                 is_LSA=False, ffn_time=False):
         super().__init__()
         self.layers = nn.ModuleList([])
         self.time_layers = nn.ModuleList([])
         self.scale = {}
         self.ffn_time = ffn_time
+        wlog(f'Use time embedding before FFN? {ffn_time}')
+
 
         for i in range(depth):
             self.time_layers.append(nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(num_patches * 4 + 4, num_patches * 2 + 2)
+                nn.Linear(num_patches * 4 + 4 * tokens, num_patches * 2 + 2 * tokens)
             ))
             self.layers.append(nn.ModuleList([
                 PreNorm(num_patches, dim, Attention(dim, num_patches, heads=heads, dim_head=dim_head, dropout=dropout, is_LSA=is_LSA)),
@@ -138,7 +142,7 @@ class Transformer(nn.Module):
                 x = x * (scale + 1) + shift
 
             x = self.drop_path(attn(x)) + x
-            if time_step is not None and self.ffn_time is True:
+            if time_step is not None and self.ffn_time:
                 x = x * (scale + 1) + shift
             x = self.drop_path(ff(x)) + x
             self.scale[str(i)] = attn.fn.scale
@@ -182,7 +186,7 @@ class ViT(nn.Module):
             nn.LayerNorm(self.dim),
             nn.Linear(self.dim, self.num_classes)
         )
-        # self.apply(init_weights)
+        self.apply(init_weights)
 
     def forward(self, img):
         # patch embedding

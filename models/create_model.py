@@ -69,26 +69,17 @@ def create_model(img_size, n_classes, args):
         heads = 12 if args.dim % 12 == 0 else 8
         if args.heads is not None:
             heads = args.heads
-            print(f'heads {heads}')
+            wlog(f'heads {heads}')
         depth = 9
+
+        if args.depth is not None:
+            depth = args.depth
+            wlog(f'depth {depth}')
 
         model = DifViT(img_size=img_size, patch_size=patch_size, num_classes=n_classes, dim=args.dim,
-                       mlp_dim_ratio=2, depth=depth, heads=heads, dim_head=args.dim // heads,
+                       mlp_dim_ratio=2, depth=depth, heads=heads, dim_head=args.dim // heads, channels=3 if args.dataset != 'mnist' else 1,
                        stochastic_depth=0, is_SPT=args.SPT, is_LSA=args.LSA, ffn_time=args.ffnt)
 
-    elif args.model == 'cvt':
-        patch_size = 4 if img_size == 32 else 8
-        if 'ps' in vars(args):
-            patch_size = args.ps
-        heads = 12 if args.dim % 12 == 0 else 8
-        if args.heads is not None:
-            heads = args.heads
-            print(f'heads {heads}')
-        depth = 9
-
-        model = CVT(img_size=img_size, patch_size=patch_size, num_classes=n_classes, dim=args.dim,
-                    mlp_dim_ratio=2, depth=depth, heads=heads, dim_head=args.dim // heads,
-                    stochastic_depth=0, is_SPT=args.SPT, is_LSA=args.LSA, ffn_time=args.ffnt)
 
     else:
         assert False
