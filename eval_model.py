@@ -22,7 +22,7 @@ def init_parser():
     arg_parser.add_argument("--eval", default="OOD", type=str, choices=["logp_hist", "OOD", "test_clf", "cali", "gen", 'quality', 'nll'])
 
     # Data args
-    arg_parser.add_argument('--data_path', default='../../data', type=str, help='dataset path')
+    arg_parser.add_argument('--data_path', default='./data', type=str, help='dataset path')
     arg_parser.add_argument('--dataset', default='cifar10', choices=['cifar10', 'cifar100', 'tinyimg', 'svhn', 'mnist', 'stl10', 'celeba', 'img32', 'img128', 'img12810', 'imgnet', 'img10'],
                             type=str, help='Image Net dataset path')
     arg_parser.add_argument('-j', '--workers', default=4, type=int, metavar='N', help='number of data loading workers (default: 4)')

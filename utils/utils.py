@@ -80,24 +80,31 @@ def to_video(ema_model, arg):
         os.remove('iter-%d.png' % (i + 1))
 
 
-def sample_ema(ema_model, buffer, epoch, arg):
+def sample_ema(ema_model, buffer, epoch, arg, title='ema'):
     ema_model.eval()
-    n, num = 100, 100
-    if arg.dataset != 'cifar10':
-        n = 1
-        num = 25
-    for i in tqdm(range(n)):
-        if (i + 1) % 10 == 0:
-            print(f'Sampling {i}-th batch with 100 images')
-        q = save_sample_q(ema_model, i, arg, num=num)
-        idx_start = i * num
-        buffer[idx_start:idx_start + num] = q
-
+    q = save_sample_q(ema_model, epoch, arg)
+    idx_start = 0
+    if epoch > 20:
+        idx_start = (epoch - 20) % 100 * (100 if arg.dataset != 'stl10' else 50)
+    buffer[idx_start:idx_start + 100] = q
     inc_score, fid = 0, 0
-    if arg.dataset == 'cifar10':
-        metrics = eval_is_fid((buffer + 1) * 127.5)
+    if title:
+        torch.save({'model_state_dict': ema_model.state_dict()}, os.path.join(arg.save_path, 'ema_checkpoint.pth'))
+        if (epoch * 10) % arg.epochs == 0 or epoch <= 10:
+            torch.save({'model_state_dict': ema_model.state_dict()}, os.path.join(arg.save_path, f'ema_{epoch}_checkpoint.pth'))
+    if epoch and epoch % 5 == 0 and not arg.no_fid:  # and epoch >= 50
+        end = (idx_start + 100) if epoch < 120 else 10000
+        if arg.dataset == 'stl10':
+            end = (idx_start + 100) if epoch < 70 else 5000
+        metrics = eval_is_fid((buffer[:end] + 1) * 127.5, dataset=arg.dataset)
         inc_score = metrics['inception_score_mean']
         fid = metrics['frechet_inception_distance']
+        if title is None:
+            arg.writer.add_scalar('GEN/model_IS', inc_score, epoch)
+            arg.writer.add_scalar('GEN/model_FID', fid, epoch)
+        else:
+            arg.writer.add_scalar('GEN/IS', inc_score, epoch)
+            arg.writer.add_scalar('GEN/FID', fid, epoch)
         wlog('Epoch %d  IS, FID: %.3f, %.3f' % (epoch, inc_score, fid))
     return inc_score, fid
 

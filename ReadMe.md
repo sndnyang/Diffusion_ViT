@@ -1,9 +1,14 @@
 
-# Generative ViT and hybrid ViT
+# Generative ViT and Hybrid ViT
 
 pip install -r requirements.txt
 
+The pretrained Hybrid ViT on CIFAR10, ImageNet 32x32, STL-10
+
+https://drive.google.com/drive/folders/1QSkQaidk1tXZ_HDx8jEdnhQpBTSmckwC?usp=sharing 
+
 ## Training script
+
 
 Please refer to scripts/cifar10_train.sh
 
@@ -18,20 +23,30 @@ python gevit_main.py --wd 0.05 \
       --gpu 0 \
       --px 100 --pyx 1
 ```
-
+The patch size used in my experiments can be found at the bottom.
 
 ## Evaluation
 
 ### Accuracy
 
 ```shell
-python eval_model.py --eval test_clf --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth 
+python eval_model.py --eval test_clf --ffnt 1 \
+        --ps 4 \
+        --dataset cifar10/cifar100/tinyimg/stl10/celeba/img32 \
+        --data_path ./data  \
+        --resume trained_models/cifar10_hybvit/ema_checkpoint.pth 
 ```
 
 ### Generate from scratch
 
+It will compute the FID, so you still need to specify the data_path.
+
 ```shell
-python eval_model.py --eval gen --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth
+python eval_model.py --eval gen --ffnt 1 \
+        --ps 4 \
+        --dataset cifar10/cifar100/tinyimg/stl10/celeba/img32 \
+        --data_path ./data  \
+        --resume trained_models/cifar10_hybvit/ema_checkpoint.pth 
 ```
 
 

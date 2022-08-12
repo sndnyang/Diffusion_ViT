@@ -254,7 +254,7 @@ def main(arg):
             tf_metrics = {"lr": lr, "Test/Loss": test_loss, "Test/Accuracy": test_acc, "Test/EMALoss": test_loss2, "Test/EMAAccuracy": acc2, "Train/Loss": avg_loss,
                           "Train/Acc": avg_acc, "Train/CELoss": avg_ce, "Train/DifLoss": avg_dif}
 
-        if args.px > 0 and arg.dataset in ['cifar10', 'cifar100'] and not arg.no_fid:
+        if args.px > 0 and arg.dataset in ['cifar10', 'cifar100']:
             sample_start = time.time()
             # sample_ema(diffusion_model, model_buffer, epoch, arg, title=None)
             # model.train()
