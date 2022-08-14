@@ -1,6 +1,7 @@
 #######################################################
 # ## BPDA +EOT PGD WHITEBOX ATTACK FOR SAVED NETS ## #
 #######################################################
+# code is from https://github.com/point0bar1/ebm-defense 
 import os
 import sys
 import torch as t
