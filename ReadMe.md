@@ -1,8 +1,11 @@
 
-# Generative ViT and Hybrid ViT
+# Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model
 
-https://arxiv.org/abs/2208.07791
+PyTorch implementation of Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model https://arxiv.org/abs/2208.07791
 
+It contains GenViT(Generative ViT) and HybViT (Hybrid ViT)
+
+## configuration
 pip install -r requirements.txt
 
 The pretrained Hybrid ViT on CIFAR10, ImageNet 32x32, STL-10
@@ -10,7 +13,6 @@ The pretrained Hybrid ViT on CIFAR10, ImageNet 32x32, STL-10
 https://drive.google.com/drive/folders/1QSkQaidk1tXZ_HDx8jEdnhQpBTSmckwC?usp=sharing 
 
 ## Training script
-
 
 Please refer to scripts/cifar10_train.sh
 
@@ -25,7 +27,7 @@ python gevit_main.py --wd 0.05 \
       --gpu 0 \
       --px 100 --pyx 1
 ```
-The patch size used in my experiments can be found at the bottom.
+The default patch sizes used in experiments can be found at the bottom.
 
 ## Evaluation
 
@@ -103,7 +105,6 @@ CUDA_VISIBLE_DEVICES=0 python bpda_eot_attack.py  ckpt_path  l_inf/l_2  eps
 | img224-10 | 84M             | 14 x 14    | 1024       | 12    |   9   |
 
 
-
 # Citation
 
 If you found this work useful and used it on your own research, please consider citing this paper.
@@ -118,3 +119,14 @@ If you found this work useful and used it on your own research, please consider 
       primaryClass={cs.CV}
 }
 ```
+
+
+# Knowledgement
+
+The code is built upon 
+
+1. [SL_ViT](https://github.com/aanna0701/SPT_LSA_ViT) for ViT baseline
+2. [PyTorch Diffision framework](https://github.com/lucidrains/denoising-diffusion-pytorch)
+3. NLL(Negative Log Likelihood) bits per dim(bits/dim) [guidance diffusion](https://github.com/openai/guided-diffusion/blob/main/guided_diffusion/gaussian_diffusion.py)
+
+6
