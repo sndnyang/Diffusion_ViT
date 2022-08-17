@@ -1,6 +1,8 @@
 
 # Generative ViT and Hybrid ViT
 
+https://arxiv.org/abs/2208.07791
+
 pip install -r requirements.txt
 
 The pretrained Hybrid ViT on CIFAR10, ImageNet 32x32, STL-10
@@ -99,3 +101,20 @@ CUDA_VISIBLE_DEVICES=0 python bpda_eot_attack.py  ckpt_path  l_inf/l_2  eps
 | celeba    | 17M             | 8 x 8      | 384        | 12    |   9   |
 | img128-10 | 26M             | 8 x 8      | 512        | 12    |   9   |
 | img224-10 | 84M             | 14 x 14    | 1024       | 12    |   9   |
+
+
+
+# Citation
+
+If you found this work useful and used it on your own research, please consider citing this paper.
+
+```
+@misc{yang2022vit,
+      title={Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model}, 
+      author={Xiulong Yang and Sheng-Min Shih and Yinlin Fu and Xiaoting Zhao and Shihao Ji},
+      year={2022},
+      eprint={2208.07791},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
