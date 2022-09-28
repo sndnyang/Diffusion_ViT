@@ -1,18 +1,22 @@
 
 # Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model
 
-PyTorch implementation of Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model https://arxiv.org/abs/2208.07791
+PyTorch implementation of "Your ViT is Secretly a Hybrid Discriminative-Generative Diffusion Model" https://arxiv.org/abs/2208.07791
 
 It contains GenViT(Generative ViT) and HybViT (Hybrid ViT)
 
-## configuration
+## Configuration
+
 pip install -r requirements.txt
 
 The pretrained Hybrid ViT on CIFAR10, ImageNet 32x32, STL-10
 
 https://drive.google.com/drive/folders/1QSkQaidk1tXZ_HDx8jEdnhQpBTSmckwC?usp=sharing 
 
-## Training script
+I find a new paper [U-ViT](https://arxiv.org/abs/2209.12152) achieves a FID 3.11 on CIFAR10, which is significantly better than 20.20 in my work.
+
+
+## Training Script
 
 Please refer to scripts/cifar10_train.sh
 
@@ -41,9 +45,9 @@ python eval_model.py --eval test_clf --ffnt 1 \
         --resume trained_models/cifar10_hybvit/ema_checkpoint.pth 
 ```
 
-### Generate from scratch
+### Generate From Scratch
 
-It will compute the FID, so you still need to specify the data_path.
+It will compute the FID, so you still need to specify the data_path. I didn't try any fast sampling methods.
 
 ```shell
 python eval_model.py --eval gen --ffnt 1 \
@@ -70,7 +74,7 @@ ECE
 python eval_model.py --eval cali --ffnt 1 --ps 4 --resume trained_models/cifar10_hybvit/ema_checkpoint.pth
 ```
 
-### out-of-distribution detection
+### Out-of-Distribution Detection
 
 ```shell
 python eval_model.py --eval OOD --ood_dataset svhn --score_fn px --ffnt 1 --ps 4 --gpu-id 0 --resume $1 
@@ -91,7 +95,7 @@ Please refer to scripts/bpda_attack.sh
 CUDA_VISIBLE_DEVICES=0 python bpda_eot_attack.py  ckpt_path  l_inf/l_2  eps
 ```
 
-# model config
+# Model Config
 
 | dataset   | params(Million) | patch size | dim        | heads | depth |
 |-----------|-----------------|------------|------------|-------|-------|
@@ -132,8 +136,6 @@ If you found this work useful and used it on your own research, please consider 
 
 The code is built upon 
 
-1. [SL_ViT](https://github.com/aanna0701/SPT_LSA_ViT) for ViT baseline
-2. [PyTorch Diffision framework](https://github.com/lucidrains/denoising-diffusion-pytorch)
+1. [SL_ViT](https://github.com/aanna0701/SPT_LSA_ViT) for vanilla ViT backbone
+2. [PyTorch Diffision Framework](https://github.com/lucidrains/denoising-diffusion-pytorch)
 3. NLL(Negative Log Likelihood) bits per dim(bits/dim) [guidance diffusion](https://github.com/openai/guided-diffusion/blob/main/guided_diffusion/gaussian_diffusion.py)
-
-6
