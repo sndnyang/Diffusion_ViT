@@ -104,6 +104,13 @@ CUDA_VISIBLE_DEVICES=0 python bpda_eot_attack.py  ckpt_path  l_inf/l_2  eps
 | img128-10 | 26M             | 8 x 8      | 512        | 12    |   9   |
 | img224-10 | 84M             | 14 x 14    | 1024       | 12    |   9   |
 
+**Note**
+
+[U-ViT](https://arxiv.org/abs/2209.12152) easily outperforms this work by a large margin, and close the gap to UNet-based DDPM.
+
+They use a vanilla ViT to achieve a FID 5.97, which is significantly better than 20.20 in my work. I think it's because my code/coding is much weaker, not the model capacity/patch size. 
+
+It's interesting to see more promising work on high-resolution datasets.
 
 # Citation
 
