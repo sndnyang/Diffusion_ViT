@@ -1,0 +1,101 @@
+2022-07-24 12:20:19,419 - eval_model.py[line:168]: ./cifar10_gen_checkpoint.pth_eval_gen_0724122019
+2022-07-24 12:20:19,419 - dataloader.py[line:11]: CIFAR10
+2022-07-24 12:20:24,930 - eval_model.py[line:115]: Creating model: difvit
+2022-07-24 12:20:24,930 - eval_model.py[line:116]: Number of params: 11,185,068
+2022-07-24 12:21:58,088 - eval_tasks.py[line:47]: sample with 100
+2022-07-24 12:21:58,088 - eval_tasks.py[line:48]: Inception score of 3.6966021001206526
+2022-07-24 12:21:58,088 - eval_tasks.py[line:49]: FID of score 158.45677524844908
+2022-07-24 12:25:37,855 - eval_tasks.py[line:39]: batch 10 0:04:04.956484
+2022-07-24 12:26:49,295 - eval_tasks.py[line:47]: sample with 1000
+2022-07-24 12:26:49,296 - eval_tasks.py[line:48]: Inception score of 7.239425422109328
+2022-07-24 12:26:49,297 - eval_tasks.py[line:49]: FID of score 47.114791380458996
+2022-07-24 12:30:54,422 - eval_tasks.py[line:39]: batch 20 0:08:10.082883
+2022-07-24 12:32:20,935 - eval_tasks.py[line:47]: sample with 2000
+2022-07-24 12:32:20,936 - eval_tasks.py[line:48]: Inception score of 7.551400513201878
+2022-07-24 12:32:20,936 - eval_tasks.py[line:49]: FID of score 30.366182955688032
+2022-07-24 12:36:25,761 - eval_tasks.py[line:39]: batch 30 0:12:14.910872
+2022-07-24 12:37:47,110 - eval_tasks.py[line:47]: sample with 3000
+2022-07-24 12:37:47,110 - eval_tasks.py[line:48]: Inception score of 7.806846000798632
+2022-07-24 12:37:47,110 - eval_tasks.py[line:49]: FID of score 26.037504227467537
+2022-07-24 12:41:51,466 - eval_tasks.py[line:39]: batch 40 0:16:19.267709
+2022-07-24 12:43:24,215 - eval_tasks.py[line:47]: sample with 4000
+2022-07-24 12:43:24,216 - eval_tasks.py[line:48]: Inception score of 7.845059237488039
+2022-07-24 12:43:24,216 - eval_tasks.py[line:49]: FID of score 24.17051402177225
+2022-07-24 12:47:28,306 - eval_tasks.py[line:39]: batch 50 0:20:23.359292
+2022-07-24 12:48:29,857 - eval_tasks.py[line:47]: sample with 5000
+2022-07-24 12:48:29,858 - eval_tasks.py[line:48]: Inception score of 7.957579924879437
+2022-07-24 12:48:29,858 - eval_tasks.py[line:49]: FID of score 22.7539130619229
+2022-07-24 12:52:34,062 - eval_tasks.py[line:39]: batch 60 0:24:27.564131
+2022-07-24 12:53:44,842 - eval_tasks.py[line:47]: sample with 6000
+2022-07-24 12:53:44,843 - eval_tasks.py[line:48]: Inception score of 8.0641148416332
+2022-07-24 12:53:44,843 - eval_tasks.py[line:49]: FID of score 21.95989370101995
+2022-07-24 12:57:54,017 - eval_tasks.py[line:39]: batch 70 0:28:36.740561
+2022-07-24 12:59:15,006 - eval_tasks.py[line:47]: sample with 7000
+2022-07-24 12:59:15,007 - eval_tasks.py[line:48]: Inception score of 8.062260474100635
+2022-07-24 12:59:15,007 - eval_tasks.py[line:49]: FID of score 21.45966840080257
+2022-07-24 13:03:19,247 - eval_tasks.py[line:39]: batch 80 0:32:40.983635
+2022-07-24 13:04:43,807 - eval_tasks.py[line:47]: sample with 8000
+2022-07-24 13:04:43,807 - eval_tasks.py[line:48]: Inception score of 8.12759897117584
+2022-07-24 13:04:43,807 - eval_tasks.py[line:49]: FID of score 20.857874216611492
+2022-07-24 13:08:47,963 - eval_tasks.py[line:39]: batch 90 0:36:45.142270
+2022-07-24 13:10:07,270 - eval_tasks.py[line:47]: sample with 9000
+2022-07-24 13:10:07,272 - eval_tasks.py[line:48]: Inception score of 8.128758774178369
+2022-07-24 13:10:07,272 - eval_tasks.py[line:49]: FID of score 20.410245401670238
+2022-07-24 13:14:11,465 - eval_tasks.py[line:39]: batch 100 0:40:49.343335
+2022-07-24 13:15:33,455 - eval_tasks.py[line:47]: sample with 10000
+2022-07-24 13:15:33,456 - eval_tasks.py[line:48]: Inception score of 8.16823830582961
+2022-07-24 13:15:33,456 - eval_tasks.py[line:49]: FID of score 20.19610587222229
+2022-07-24 13:19:38,528 - eval_tasks.py[line:39]: batch 110 0:44:54.416942
+2022-07-24 13:23:45,753 - eval_tasks.py[line:39]: batch 120 0:49:01.641555
+2022-07-24 13:27:55,827 - eval_tasks.py[line:39]: batch 130 0:53:11.716119
+2022-07-24 13:32:01,103 - eval_tasks.py[line:39]: batch 140 0:57:16.992713
+2022-07-24 13:36:06,472 - eval_tasks.py[line:39]: batch 150 1:01:22.360867
+2022-07-24 13:40:11,771 - eval_tasks.py[line:39]: batch 160 1:05:27.660202
+2022-07-24 13:44:17,266 - eval_tasks.py[line:39]: batch 170 1:09:33.155249
+2022-07-24 13:48:22,519 - eval_tasks.py[line:39]: batch 180 1:13:38.408729
+2022-07-24 13:52:27,990 - eval_tasks.py[line:39]: batch 190 1:17:43.879089
+2022-07-24 13:56:33,420 - eval_tasks.py[line:39]: batch 200 1:21:49.309320
+2022-07-24 13:58:14,574 - eval_tasks.py[line:47]: sample with 20000
+2022-07-24 13:58:14,575 - eval_tasks.py[line:48]: Inception score of 8.249029047125195
+2022-07-24 13:58:14,575 - eval_tasks.py[line:49]: FID of score 18.567728992737955
+2022-07-24 14:02:19,062 - eval_tasks.py[line:39]: batch 210 1:25:53.803045
+2022-07-24 14:06:24,279 - eval_tasks.py[line:39]: batch 220 1:29:59.019899
+2022-07-24 14:10:29,515 - eval_tasks.py[line:39]: batch 230 1:34:04.256026
+2022-07-24 14:14:34,996 - eval_tasks.py[line:39]: batch 240 1:38:09.737269
+2022-07-24 14:18:40,486 - eval_tasks.py[line:39]: batch 250 1:42:15.227543
+2022-07-24 14:22:45,769 - eval_tasks.py[line:39]: batch 260 1:46:20.510388
+2022-07-24 14:26:51,545 - eval_tasks.py[line:39]: batch 270 1:50:26.286567
+2022-07-24 14:31:05,983 - eval_tasks.py[line:39]: batch 280 1:54:40.724005
+2022-07-24 14:35:11,289 - eval_tasks.py[line:39]: batch 290 1:58:46.030275
+2022-07-24 14:39:16,812 - eval_tasks.py[line:39]: batch 300 2:02:51.553760
+2022-07-24 14:41:47,853 - eval_tasks.py[line:47]: sample with 30000
+2022-07-24 14:41:47,854 - eval_tasks.py[line:48]: Inception score of 8.289715542915868
+2022-07-24 14:41:47,854 - eval_tasks.py[line:49]: FID of score 18.122279949186577
+2022-07-24 14:45:52,370 - eval_tasks.py[line:39]: batch 310 2:06:56.071090
+2022-07-24 14:49:58,011 - eval_tasks.py[line:39]: batch 320 2:11:01.711826
+2022-07-24 14:54:03,716 - eval_tasks.py[line:39]: batch 330 2:15:07.416745
+2022-07-24 14:58:08,897 - eval_tasks.py[line:39]: batch 340 2:19:12.597930
+2022-07-24 15:02:14,533 - eval_tasks.py[line:39]: batch 350 2:23:18.233259
+2022-07-24 15:06:19,687 - eval_tasks.py[line:39]: batch 360 2:27:23.387501
+2022-07-24 15:10:24,970 - eval_tasks.py[line:39]: batch 370 2:31:28.670213
+2022-07-24 15:14:30,860 - eval_tasks.py[line:39]: batch 380 2:35:34.560468
+2022-07-24 15:18:36,062 - eval_tasks.py[line:39]: batch 390 2:39:39.762871
+2022-07-24 15:22:41,499 - eval_tasks.py[line:39]: batch 400 2:43:45.199673
+2022-07-24 15:24:54,896 - eval_tasks.py[line:47]: sample with 40000
+2022-07-24 15:24:54,897 - eval_tasks.py[line:48]: Inception score of 8.300701814125947
+2022-07-24 15:24:54,897 - eval_tasks.py[line:49]: FID of score 17.803192792269215
+2022-07-24 15:28:59,019 - eval_tasks.py[line:39]: batch 410 2:47:49.323523
+2022-07-24 15:33:04,308 - eval_tasks.py[line:39]: batch 420 2:51:54.612332
+2022-07-24 15:37:09,786 - eval_tasks.py[line:39]: batch 430 2:56:00.090033
+2022-07-24 15:41:14,904 - eval_tasks.py[line:39]: batch 440 3:00:05.208286
+2022-07-24 15:45:20,069 - eval_tasks.py[line:39]: batch 450 3:04:10.372898
+2022-07-24 15:49:25,214 - eval_tasks.py[line:39]: batch 460 3:08:15.518217
+2022-07-24 15:53:30,698 - eval_tasks.py[line:39]: batch 470 3:12:21.002364
+2022-07-24 15:57:35,878 - eval_tasks.py[line:39]: batch 480 3:16:26.182067
+2022-07-24 16:01:41,035 - eval_tasks.py[line:39]: batch 490 3:20:31.338917
+2022-07-24 16:05:57,634 - eval_tasks.py[line:39]: batch 500 3:24:47.938367
+2022-07-24 16:08:34,019 - eval_tasks.py[line:47]: sample with 50000
+2022-07-24 16:08:34,020 - eval_tasks.py[line:48]: Inception score of 8.298686991876753
+2022-07-24 16:08:34,020 - eval_tasks.py[line:49]: FID of score 17.723861696218137
+2022-07-24 16:08:35,799 - eval_model.py[line:172]: ./cifar10_gen_checkpoint.pth_eval_gen_0724122019
+2022-07-24 16:08:35,800 - eval_model.py[line:173]: eval_model.py --resume ./cifar10_gen_checkpoint.pth --eval gen --gpu-id 6

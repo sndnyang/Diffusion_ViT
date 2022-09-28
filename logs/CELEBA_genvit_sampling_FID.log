@@ -1,0 +1,49 @@
+2022-07-23 23:24:04,571 - eval_model.py[line:168]: ./ema_checkpoint.pth_eval_gen_0723232404
+2022-07-23 23:24:04,571 - dataloader.py[line:24]: CelebA
+2022-07-23 23:24:17,433 - eval_model.py[line:115]: Creating model: difvit
+2022-07-23 23:24:17,434 - eval_model.py[line:116]: Number of params: 17,109,948
+2022-07-23 23:31:00,454 - eval_tasks.py[line:47]: sample with 100
+2022-07-23 23:31:00,455 - eval_tasks.py[line:48]: Inception score of 1.787280517590073
+2022-07-23 23:31:00,455 - eval_tasks.py[line:49]: FID of score 72.40806362532891
+2022-07-24 00:06:55,578 - eval_tasks.py[line:39]: batch 10 0:40:11.766242
+2022-07-24 00:09:21,339 - eval_tasks.py[line:47]: sample with 1000
+2022-07-24 00:09:21,339 - eval_tasks.py[line:48]: Inception score of 2.2964215849569416
+2022-07-24 00:09:21,339 - eval_tasks.py[line:49]: FID of score 32.63407989892664
+2022-07-24 00:30:38,366 - eval_tasks.py[line:39]: batch 20 1:01:28.794780
+2022-07-24 00:32:14,365 - eval_tasks.py[line:47]: sample with 2000
+2022-07-24 00:32:14,366 - eval_tasks.py[line:48]: Inception score of 2.287005609218442
+2022-07-24 00:32:14,366 - eval_tasks.py[line:49]: FID of score 26.379932855521474
+2022-07-24 00:50:08,077 - eval_tasks.py[line:39]: batch 30 1:19:22.511290
+2022-07-24 00:51:44,078 - eval_tasks.py[line:47]: sample with 3000
+2022-07-24 00:51:44,079 - eval_tasks.py[line:48]: Inception score of 2.281357228740314
+2022-07-24 00:51:44,079 - eval_tasks.py[line:49]: FID of score 24.4843950016012
+2022-07-24 01:09:37,712 - eval_tasks.py[line:39]: batch 40 1:37:16.144396
+2022-07-24 01:11:14,657 - eval_tasks.py[line:47]: sample with 4000
+2022-07-24 01:11:14,657 - eval_tasks.py[line:48]: Inception score of 2.265825766359859
+2022-07-24 01:11:14,657 - eval_tasks.py[line:49]: FID of score 23.616369357073836
+2022-07-24 01:29:08,308 - eval_tasks.py[line:39]: batch 50 1:55:09.795310
+2022-07-24 01:30:45,250 - eval_tasks.py[line:47]: sample with 5000
+2022-07-24 01:30:45,250 - eval_tasks.py[line:48]: Inception score of 2.270016061768824
+2022-07-24 01:30:45,250 - eval_tasks.py[line:49]: FID of score 23.121652433955006
+2022-07-24 01:48:38,800 - eval_tasks.py[line:39]: batch 60 2:13:03.348459
+2022-07-24 01:50:20,152 - eval_tasks.py[line:47]: sample with 6000
+2022-07-24 01:50:20,153 - eval_tasks.py[line:48]: Inception score of 2.2659953563707296
+2022-07-24 01:50:20,153 - eval_tasks.py[line:49]: FID of score 22.706222973091343
+2022-07-24 02:08:13,983 - eval_tasks.py[line:39]: batch 70 2:30:57.178403
+2022-07-24 02:09:27,975 - eval_tasks.py[line:47]: sample with 7000
+2022-07-24 02:09:27,976 - eval_tasks.py[line:48]: Inception score of 2.259193473958814
+2022-07-24 02:09:27,976 - eval_tasks.py[line:49]: FID of score 22.48026266499454
+2022-07-24 02:27:22,307 - eval_tasks.py[line:39]: batch 80 2:48:51.511485
+2022-07-24 02:28:35,635 - eval_tasks.py[line:47]: sample with 8000
+2022-07-24 02:28:35,636 - eval_tasks.py[line:48]: Inception score of 2.261966086303726
+2022-07-24 02:28:35,636 - eval_tasks.py[line:49]: FID of score 22.234301894260682
+2022-07-24 02:46:29,766 - eval_tasks.py[line:39]: batch 90 3:06:45.642021
+2022-07-24 02:47:45,139 - eval_tasks.py[line:47]: sample with 9000
+2022-07-24 02:47:45,139 - eval_tasks.py[line:48]: Inception score of 2.2513155906839453
+2022-07-24 02:47:45,139 - eval_tasks.py[line:49]: FID of score 22.125393970139726
+2022-07-24 03:05:39,255 - eval_tasks.py[line:39]: batch 100 3:24:39.758331
+2022-07-24 03:06:54,941 - eval_tasks.py[line:47]: sample with 10000
+2022-07-24 03:06:54,942 - eval_tasks.py[line:48]: Inception score of 2.2426828521259425
+2022-07-24 03:06:54,942 - eval_tasks.py[line:49]: FID of score 22.066203446531034
+2022-07-24 03:06:59,423 - eval_model.py[line:172]: ./ema_checkpoint.pth_eval_gen_0723232404
+2022-07-24 03:06:59,424 - eval_model.py[line:173]: eval_model.py --resume ./ema_checkpoint.pth --gpu-id 0 --ps 8 --dataset celeba --data_path ./data/CelebA/data128x128/ --eval gen
