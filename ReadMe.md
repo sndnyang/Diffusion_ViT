@@ -5,6 +5,10 @@ PyTorch implementation of "Your ViT is Secretly a Hybrid Discriminative-Generati
 
 It contains GenViT(Generative ViT) and HybViT (Hybrid ViT)
 
+[U-ViT](https://github.com/baofff/U-ViT) from Tsinghua has achieved much better performance than mine, please refer to https://github.com/baofff/U-ViT. 
+
+
+
 ## Configuration
 
 pip install -r requirements.txt
